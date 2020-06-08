@@ -47,8 +47,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="index3.html" class="brand-link">
-      <img src="images/logo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+    <a href="home" class="brand-link">
+      <img src="images/logo.png" alt="Pet in One Logo" class="brand-image img-circle elevation-3"
            style="opacity: .8">
       <span class="brand-text font-weight-light">Pet In One</span>
     </a>
@@ -75,7 +75,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
         <li class="nav-item">
             <router-link to="dashboard" class="nav-link">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <i class="nav-icon fas fa-tachometer-alt text-orange"></i>
               <p>
                 Dashboard
               </p>
@@ -84,7 +84,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
           <li class="nav-item has-treeview ">
             <a href="#" class="nav-link ">
-              <i class="nav-icon fas fa-cog "></i>
+              <i class="nav-icon fas fa-cog text-green"></i>
               <p>
                 Management
                 <i class="right fas fa-angle-left"></i>
@@ -92,17 +92,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="#" class="nav-link ">
-                  <i class="fas fa-feather-alt"></i>
-                  <p>Posts</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="fas fa-circle nav-icon"></i>
+                <router-link to="users" class="nav-link ">
+                  <i class="fas fa-users nav-icon text-blue"></i>
                   <p>Users</p>
-                </a>
+                </router-link>
               </li>
+
             </ul>
           </li>
           <li class="nav-item">
@@ -114,12 +109,16 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </router-link>
         </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-power-off"></i>
-              <p>
-                Log Out
-              </p>
+            <a class="nav-link" href="{{ route('logout') }}"
+                onclick="event.preventDefault();
+                    document.getElementById('logout-form').submit();">
+                    <i class="nav-icon fas fa-power-off text-red"></i>
+                    <p>{{ __('Logout') }}</p>
             </a>
+
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                @csrf
+            </form>
           </li>
         </ul>
       </nav>
