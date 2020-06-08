@@ -30057,3 +30057,8 @@ a.text-dark:focus {
   }
 }
 
+.router-link-exact-active {
+  background: #0050c7;
+  color: #ffffff !important;
+}
+

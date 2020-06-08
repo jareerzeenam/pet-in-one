@@ -11,11 +11,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <meta http-equiv="x-ua-compatible" content="ie=edge">
 
   <title>Pet in one</title>
+   <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
 <link rel="stylesheet" href="/css/app.css">
 </head>
 <body class="hold-transition sidebar-mini">
-<div class="wrapper">
+<div class="wrapper" id="app">
 
   <!-- Navbar -->
   <nav class="main-header navbar navbar-expand navbar-white navbar-light">
@@ -70,17 +72,18 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
+
         <li class="nav-item">
-            <a href="#" class="nav-link">
+            <router-link to="dashboard" class="nav-link">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Dashboard
               </p>
-            </a>
+            </router-link>
         </li>
 
           <li class="nav-item has-treeview ">
-            <a href="#" class="nav-link active">
+            <a href="#" class="nav-link ">
               <i class="nav-icon fas fa-cog "></i>
               <p>
                 Management
@@ -89,7 +92,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="#" class="nav-link active">
+                <a href="#" class="nav-link ">
                   <i class="fas fa-feather-alt"></i>
                   <p>Posts</p>
                 </a>
@@ -103,12 +106,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </ul>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <router-link to="profile" class="nav-link">
               <i class="nav-icon fas fa-user"></i>
               <p>
                 Profile
               </p>
-            </a>
+            </router-link>
         </li>
           <li class="nav-item">
             <a href="#" class="nav-link">
@@ -134,7 +137,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- Main content -->
     <div class="content">
       <div class="container-fluid">
-
+        <router-view></router-view>
       </div><!-- /.container-fluid -->
     </div>
     <!-- /.content -->
