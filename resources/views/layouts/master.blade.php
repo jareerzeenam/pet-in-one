@@ -35,6 +35,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <div class="input-group-append">
           <button class="btn btn-navbar" type="submit">
             <i class="fas fa-search"></i>
+
           </button>
         </div>
       </div>
@@ -149,10 +150,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <footer class="main-footer">
     <!-- To the right -->
     <div class="float-right d-none d-sm-inline">
-      Anything you want
+      Pet In One
     </div>
     <!-- Default to the left -->
-    <strong>Copyright &copy; 2014-2019 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
+    <strong>Copyright &copy; 2020 <a href="home">Petinone.com</a>.</strong> All rights reserved.
   </footer>
 </div>
 <script src="/js/app.js"></script>
