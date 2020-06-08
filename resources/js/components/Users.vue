@@ -33,12 +33,12 @@
                             </thead>
                             <tbody>
                                 <tr v-for="user in users" :key="user.id">
-                                    <td>{{user.id}}</td>
-                                    <td>{{user.name}}</td>
-                                    <td>{{user.email}}</td>
-                                    <td>{{user.type | upText}}</td>
-                                    <td>{{user.bio}}</td>
-                                    <td>{{user.created_at | myDate}}</td>
+                                    <td>{{ user.id }}</td>
+                                    <td>{{ user.name }}</td>
+                                    <td>{{ user.email }}</td>
+                                    <td>{{ user.type | upText }}</td>
+                                    <td>{{ user.bio }}</td>
+                                    <td>{{ user.created_at | myDate }}</td>
                                     <td>
                                         <a href="#">
                                             <i class="fa fa-edit"></i>
@@ -192,7 +192,7 @@
 export default {
     data() {
         return {
-            users:{},
+            users: {},
             form: new Form({
                 name: "",
                 email: "",
@@ -208,13 +208,23 @@ export default {
             axios.get("api/user").then(({ data }) => (this.users = data.data));
         },
         createUser() {
+            this.$Progress.start();
             this.form.post("api/user");
+
+            $("#addNew").modal("hide");
+
+            toast.fire({
+                icon: "success",
+                title: "User Created successfully"
+            });
+            this.$Progress.finish();
         }
     },
 
     created() {
         // console.log("Component mounted.");
         this.loadUsers();
+        setInterval(()=>this.loadUsers(),3000);
     }
 };
 </script>

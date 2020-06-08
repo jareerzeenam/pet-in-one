@@ -8,23 +8,53 @@ require("./bootstrap");
 
 window.Vue = require("vue");
 
-// ! Moment Js
-import moment from 'moment';
+// ! Moment Js used to filter the date anc convert it to human Readable
+import moment from "moment";
+// !
 
+// ! Vue Router
 import VueRouter from "vue-router";
 
 // !import vform
 import { Form, HasError, AlertError } from "vform";
 // * Global components for vform
-
 window.Form = Form;
-
 Vue.component(HasError.name, HasError);
 Vue.component(AlertError.name, AlertError);
 // !
 
 Vue.use(VueRouter);
 
+// !Vue Progressbar
+import VueProgressBar from "vue-progressbar";
+Vue.use(VueProgressBar, {
+    color: "rgb(143, 255, 199)",
+    failedColor: "red",
+    height: "3px"
+});
+// !
+
+// ! Sweet Alart
+import swal from "sweetalert2";
+window.swal = swal;
+// ! Sweet Alart Global
+const toast = swal.mixin({
+    toast: true,
+    position: "top-end",
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    onOpen: toast => {
+        toast.addEventListener("mouseenter", swal.stopTimer);
+        toast.addEventListener("mouseleave", swal.resumeTimer);
+    }
+});
+
+window.toast = toast;
+
+// !
+
+// !  VUE ROUTES
 let routes = [
     {
         path: "/dashboard",
@@ -46,13 +76,14 @@ const router = new VueRouter({
     routes // short for `routes: routes`
 });
 
+// ! Global component to make first letter upper case (this can be used anywhere in the application)
 Vue.filter("upText", function(text) {
     return text.charAt(0).toUpperCase() + text.slice(1);
 });
-
-Vue.filter('myDate',function (created) {
+// ! Global component to make date human readable (this can be used anywhere in the application)
+Vue.filter("myDate", function(created) {
     return moment(created).format("MMMM Do YYYY");
-})
+});
 
 /**
  * The following block of code may be used to automatically register your
