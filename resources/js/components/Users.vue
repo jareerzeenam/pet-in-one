@@ -159,7 +159,7 @@
                                     placeholder="Password"
                                     class="form-control"
                                     :class="{
-                                        'is-invalid': form.errors.has('email')
+                                        'is-invalid': form.errors.has('password')
                                     }"
                                 />
                                 <has-error
@@ -208,23 +208,36 @@ export default {
             axios.get("api/user").then(({ data }) => (this.users = data.data));
         },
         createUser() {
+            // !start progress bar
             this.$Progress.start();
-            this.form.post("api/user");
-
-            $("#addNew").modal("hide");
-
-            toast.fire({
-                icon: "success",
-                title: "User Created successfully"
-            });
-            this.$Progress.finish();
+            //! route
+            this.form.post("api/user")
+                .then(() => {
+                    // !fire ater created( load new data to the ui from the database without rereshing)
+                    Fire.$emit("AfterCreated");
+                    // ! hide model after creating
+                    $("#addNew").modal("hide");
+                    // !fire sweet alart after created
+                    toast.fire({
+                        icon: "success",
+                        title: "User Created successfully"
+                    });
+                    // ! end progressbar
+                    this.$Progress.finish();
+                })
+                .catch(() => {});
         }
     },
 
     created() {
         // console.log("Component mounted.");
         this.loadUsers();
-        setInterval(()=>this.loadUsers(),3000);
+
+        // !Custome even to load data when an action happened in the form
+        Fire.$on("AfterCreated", () => {
+            this.loadUsers();
+        });
+        // setInterval(()=>this.loadUsers(),3000);
     }
 };
 </script>

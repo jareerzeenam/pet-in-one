@@ -85,6 +85,9 @@ Vue.filter("myDate", function(created) {
     return moment(created).format("MMMM Do YYYY");
 });
 
+// ! Update and reload the page with new data dinamically witout refreshing the page
+window.Fire = new Vue();
+
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue

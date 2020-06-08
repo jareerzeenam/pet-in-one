@@ -2234,24 +2234,35 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     createUser: function createUser() {
-      this.$Progress.start();
-      this.form.post("api/user");
-      $("#addNew").modal("hide");
-      toast.fire({
-        icon: "success",
-        title: "User Created successfully"
-      });
-      this.$Progress.finish();
+      var _this2 = this;
+
+      // !start progress bar
+      this.$Progress.start(); //! route
+
+      this.form.post("api/user").then(function () {
+        // !fire ater created( load new data to the ui from the database without rereshing)
+        Fire.$emit("AfterCreated"); // ! hide model after creating
+
+        $("#addNew").modal("hide"); // !fire sweet alart after created
+
+        toast.fire({
+          icon: "success",
+          title: "User Created successfully"
+        }); // ! end progressbar
+
+        _this2.$Progress.finish();
+      })["catch"](function () {});
     }
   },
   created: function created() {
-    var _this2 = this;
+    var _this3 = this;
 
     // console.log("Component mounted.");
-    this.loadUsers();
-    setInterval(function () {
-      return _this2.loadUsers();
-    }, 3000);
+    this.loadUsers(); // !Custome even to load data when an action happened in the form
+
+    Fire.$on("AfterCreated", function () {
+      _this3.loadUsers();
+    }); // setInterval(()=>this.loadUsers(),3000);
   }
 });
 
@@ -63456,7 +63467,7 @@ var render = function() {
                         ],
                         staticClass: "form-control",
                         class: {
-                          "is-invalid": _vm.form.errors.has("email")
+                          "is-invalid": _vm.form.errors.has("password")
                         },
                         attrs: {
                           type: "password",
@@ -78891,7 +78902,9 @@ Vue.filter("upText", function (text) {
 
 Vue.filter("myDate", function (created) {
   return moment__WEBPACK_IMPORTED_MODULE_0___default()(created).format("MMMM Do YYYY");
-});
+}); // ! Update and reload the page with new data dinamically witout refreshing the page
+
+window.Fire = new Vue();
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
