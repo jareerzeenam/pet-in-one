@@ -27,16 +27,18 @@
                                     <th>Email</th>
                                     <th>Type</th>
                                     <th>Bio</th>
+                                    <th>Registered At</th>
                                     <th>Modify</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>183</td>
-                                    <td>John Doe</td>
-                                    <td>11-7-2014</td>
-                                    <td>Approved</td>
-                                    <td>Bio</td>
+                                <tr v-for="user in users" :key="user.id">
+                                    <td>{{user.id}}</td>
+                                    <td>{{user.name}}</td>
+                                    <td>{{user.email}}</td>
+                                    <td>{{user.type | upText}}</td>
+                                    <td>{{user.bio}}</td>
+                                    <td>{{user.created_at | myDate}}</td>
                                     <td>
                                         <a href="#">
                                             <i class="fa fa-edit"></i>
@@ -109,7 +111,10 @@
                                         'is-invalid': form.errors.has('email')
                                     }"
                                 />
-                                <has-error :form="form" field="email"></has-error>
+                                <has-error
+                                    :form="form"
+                                    field="email"
+                                ></has-error>
                             </div>
                             <div class="form-group">
                                 <textarea
@@ -123,10 +128,7 @@
                                 >
                                 </textarea>
 
-                                <has-error
-                                    :form="form"
-                                    field="bio"
-                                ></has-error>
+                                <has-error :form="form" field="bio"></has-error>
                             </div>
                             <div class="form-group">
                                 <select
@@ -190,6 +192,7 @@
 export default {
     data() {
         return {
+            users:{},
             form: new Form({
                 name: "",
                 email: "",
@@ -201,13 +204,17 @@ export default {
         };
     },
     methods: {
+        loadUsers() {
+            axios.get("api/user").then(({ data }) => (this.users = data.data));
+        },
         createUser() {
             this.form.post("api/user");
         }
     },
 
-    mounted() {
-        console.log("Component mounted.");
+    created() {
+        // console.log("Component mounted.");
+        this.loadUsers();
     }
 };
 </script>
