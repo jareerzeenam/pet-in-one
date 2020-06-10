@@ -2213,31 +2213,50 @@ __webpack_require__.r(__webpack_exports__);
     console.log("Component mounted.");
   },
   methods: {
-    updateInfo: function updateInfo() {
+    loadUser: function loadUser() {
       var _this = this;
+
+      axios.get("api/profile").then(function (_ref) {
+        var data = _ref.data;
+        return _this.form.fill(data);
+      });
+    },
+    //   ! this function will add the profile photo name with the directry path from the database
+    getProfilePhoto: function getProfilePhoto() {
+      // !ternary operator javascript
+      var photo = this.form.photo.length > 200 ? this.form.photo : "images/profile/" + this.form.photo;
+      return photo; // return "images/profile/" + this.form.photo;
+    },
+    updateInfo: function updateInfo() {
+      var _this2 = this;
 
       this.$Progress.start();
       this.form.put("api/profile").then(function () {
-        _this.$Progress.finish();
+        toast.fire({
+          icon: "success",
+          title: "Profile Updated Successfully"
+        });
+
+        _this2.$Progress.finish();
       })["catch"](function () {
-        _this.$Progress.fail();
+        _this2.$Progress.fail();
       });
     },
     updateProfile: function updateProfile(e) {
-      var _this2 = this;
+      var _this3 = this;
 
       //   console.log('Uploading Image');
       var file = e.target.files[0]; // console.log(file);
 
-      var reader = new FileReader();
+      var reader = new FileReader(); // !check uploading file size
 
       if (file["size"] < 2111775) {
         reader.onloadend = function (file) {
           // console.log("RESULT", reader.result);
-          _this2.form.photo = reader.result;
+          _this3.form.photo = reader.result; // Fire.$emit("AfterCreated");
         };
 
-        reader.readAsDataURL(file);
+        reader.readAsDataURL(file); // !fire ater created( load new data to the ui from the database without rereshing)
       } else {
         swal.fire({
           icon: "error",
@@ -2248,11 +2267,13 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   created: function created() {
-    var _this3 = this;
+    var _this4 = this;
 
-    axios.get("api/profile").then(function (_ref) {
-      var data = _ref.data;
-      return _this3.form.fill(data);
+    // axios.get("api/profile").then(({ data }) => this.form.fill(data));
+    this.loadUser(); // !Custome even to load data when an action happened in the form
+
+    Fire.$on("AfterCreated", function () {
+      _this4.loadUser();
     });
   }
 });
@@ -65109,7 +65130,24 @@ var render = function() {
     _c("div", { staticClass: "row justify-content-center" }, [
       _c("div", { staticClass: "col-md-12 mt-3" }, [
         _c("div", { staticClass: "card card-widget widget-user" }, [
-          _vm._m(0),
+          _c(
+            "div",
+            {
+              staticClass: "widget-user-header text-white",
+              staticStyle: {
+                background: "url('./images/user-cover.png') center center"
+              }
+            },
+            [
+              _c("h3", { staticClass: "widget-user-username text-right" }, [
+                _vm._v(_vm._s(_vm.form.name))
+              ]),
+              _vm._v(" "),
+              _c("h5", { staticClass: "widget-user-desc text-right" }, [
+                _vm._v(_vm._s(_vm.form.email))
+              ])
+            ]
+          ),
           _vm._v(" "),
           _c("div", { staticClass: "widget-user-image" }, [
             _c("img", {
@@ -65118,15 +65156,15 @@ var render = function() {
             })
           ]),
           _vm._v(" "),
-          _vm._m(1)
+          _vm._m(0)
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "card" }, [
-          _vm._m(2),
+          _vm._m(1),
           _vm._v(" "),
           _c("div", { staticClass: "card-body" }, [
             _c("div", { staticClass: "tab-content" }, [
-              _vm._m(3),
+              _vm._m(2),
               _vm._v(" "),
               _c(
                 "div",
@@ -65373,29 +65411,6 @@ var render = function() {
   ])
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      {
-        staticClass: "widget-user-header text-white",
-        staticStyle: {
-          background: "url('./images/user-cover.png') center center"
-        }
-      },
-      [
-        _c("h3", { staticClass: "widget-user-username text-right" }, [
-          _vm._v("Elizabeth Pierce")
-        ]),
-        _vm._v(" "),
-        _c("h5", { staticClass: "widget-user-desc text-right" }, [
-          _vm._v("Web Designer")
-        ])
-      ]
-    )
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement

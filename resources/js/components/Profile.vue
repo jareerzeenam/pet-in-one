@@ -16,8 +16,8 @@
             class="widget-user-header text-white"
             style="background: url('./images/user-cover.png') center center;"
           >
-            <h3 class="widget-user-username text-right">Elizabeth Pierce</h3>
-            <h5 class="widget-user-desc text-right">Web Designer</h5>
+            <h3 class="widget-user-username text-right">{{form.name}}</h3>
+            <h5 class="widget-user-desc text-right">{{ form.email }}</h5>
           </div>
           <div class="widget-user-image">
             <img class="img-circle" :src="getProfilePhoto()" alt="User Avatar" />
@@ -195,11 +195,31 @@ export default {
   },
 
   methods: {
+    loadUser() {
+      axios.get("api/profile").then(({ data }) => this.form.fill(data));
+    },
+    //   ! this function will add the profile photo name with the directry path from the database
+    getProfilePhoto() {
+      // !ternary operator javascript
+      let photo =
+        this.form.photo.length > 200
+          ? this.form.photo
+          : "images/profile/" + this.form.photo;
+
+
+      return photo;
+
+      // return "images/profile/" + this.form.photo;
+    },
     updateInfo() {
       this.$Progress.start();
       this.form
         .put("api/profile")
         .then(() => {
+             toast.fire({
+            icon: "success",
+            title: "Profile Updated Successfully"
+          });
           this.$Progress.finish();
         })
         .catch(() => {
@@ -211,13 +231,16 @@ export default {
       let file = e.target.files[0];
       // console.log(file);
       let reader = new FileReader();
-
+      // !check uploading file size
       if (file["size"] < 2111775) {
         reader.onloadend = file => {
           // console.log("RESULT", reader.result);
           this.form.photo = reader.result;
+            // Fire.$emit("AfterCreated");
         };
         reader.readAsDataURL(file);
+        // !fire ater created( load new data to the ui from the database without rereshing)
+
       } else {
         swal.fire({
           icon: "error",
@@ -229,7 +252,12 @@ export default {
   },
 
   created() {
-    axios.get("api/profile").then(({ data }) => this.form.fill(data));
+    // axios.get("api/profile").then(({ data }) => this.form.fill(data));
+    this.loadUser();
+    // !Custome even to load data when an action happened in the form
+    Fire.$on("AfterCreated", () => {
+      this.loadUser();
+    });
   }
 };
 </script>

@@ -55,7 +55,7 @@ class UserController extends Controller
     // !
     public function UpdateProfile(Request $request)
     {
-        $user =  auth('api')->user();
+        $user =  auth('api')->user(); 
 
         // ! Validation
         $this->validate($request, [
@@ -76,7 +76,7 @@ class UserController extends Controller
             $request->merge(['photo' => $name]);
 
             // ! Delete the old profile photo if the user upoades a new one
-            $userPhoto  = public_path('images/profile/').$currentPhoto;
+            $userPhoto  = public_path('images/profile/') . $currentPhoto;
             if (file_exists($userPhoto)) {
                 @unlink($userPhoto);
             }
@@ -94,6 +94,7 @@ class UserController extends Controller
 
     public function profile()
     {
+        // $user =  User::all();
         return auth('api')->user();
     }
     /**
