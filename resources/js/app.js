@@ -17,10 +17,20 @@ import VueRouter from "vue-router";
 
 // !import vform
 import { Form, HasError, AlertError } from "vform";
+
+// ! User ACL Gate
+import Gate from "./Gate";
+Vue.prototype.$gate = new Gate(window.user);
+// !
+
 // * Global components for vform
 window.Form = Form;
 Vue.component(HasError.name, HasError);
 Vue.component(AlertError.name, AlertError);
+// !
+
+// ! Vue Pagination
+Vue.component("pagination", require("laravel-vue-pagination"));
 // !
 
 Vue.use(VueRouter);
@@ -103,24 +113,21 @@ window.Fire = new Vue();
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
-
-
 Vue.component(
-    'passport-clients',
-    require('./components/passport/Clients.vue').default
+    "passport-clients",
+    require("./components/passport/Clients.vue").default
 );
 
 Vue.component(
-    'passport-authorized-clients',
-    require('./components/passport/AuthorizedClients.vue').default
+    "passport-authorized-clients",
+    require("./components/passport/AuthorizedClients.vue").default
 );
 
 Vue.component(
-    'passport-personal-access-tokens',
-    require('./components/passport/PersonalAccessTokens.vue').default
+    "passport-personal-access-tokens",
+    require("./components/passport/PersonalAccessTokens.vue").default
 );
-
-
+Vue.component("not-found", require("./components/NotFound.vue").default);
 
 Vue.component(
     "example-component",

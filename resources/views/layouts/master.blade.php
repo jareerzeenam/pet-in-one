@@ -59,12 +59,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="images/profile.png" class="img-circle elevation-2" alt="User Image">
+          <img src="images/profile/{{ Auth::user()->photo }}" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
           <a href="#" class="d-block">
                {{ Auth::user()->name }}
           </a>
+          <p class="text-white">{{ Auth::user()->type }}</p>
         </div>
       </div>
 
@@ -92,13 +93,20 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </p>
             </a>
             <ul class="nav nav-treeview">
-              <li class="nav-item">
+              @can('isAdmin')
+                <li class="nav-item">
                 <router-link to="users" class="nav-link ">
                   <i class="fas fa-users nav-icon text-blue"></i>
                   <p>Users</p>
                 </router-link>
               </li>
-
+              @endcan
+               <li class="nav-item">
+                <router-link to="posts" class="nav-link ">
+                  <i class="fas fa-address-card nav-icon text-blue"></i>
+                  <p>Posts</p>
+                </router-link>
+              </li>
             </ul>
           </li>
           @can('isAdmin')
@@ -168,6 +176,17 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <strong>Copyright &copy; 2020 <a href="home">Petinone.com</a>.</strong> All rights reserved.
   </footer>
 </div>
+
+@auth
+   <script>
+        window.user = @json(auth()->user())
+   </script>
+@endauth
+
+
+
+
+
 <script src="/js/app.js"></script>
 </body>
 </html>

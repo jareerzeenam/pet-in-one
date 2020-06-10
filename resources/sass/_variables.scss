@@ -18,6 +18,7 @@ $yellow: #ffed4a;
 $green: #11a81d;
 $teal: #4dc0b5;
 $cyan: #6cb2eb;
+$white:#fff;
 
 
 .text-blue {
@@ -36,10 +37,14 @@ $cyan: #6cb2eb;
     color: $purple;
 }
 
-.text-orange{
+.text-orange {
     color: $orange;
 }
 
-.text-green{
+.text-green {
     color: $green;
+}
+
+.text-white {
+    color: $white;
 }

@@ -8,11 +8,16 @@ use Illuminate\Http\Request;
 use App\User;
 use Illuminate\Support\Facades\Hash;
 
+// !import Gate
+use Illuminate\Support\Facades\Gate;
+
 class UserController extends Controller
 {
     public function __construct()
     {
         $this->middleware('auth:api');
+        // $this->authorize('isAdmin');
+
     }
 
     /**
@@ -23,7 +28,11 @@ class UserController extends Controller
     public function index()
     {
         // return User::all();
-        return User::latest()->paginate(10);
+        //! $this->authorize('isAdmin');
+        if (Gate::allows('isAdmin') || Gate::allows('isAuthor')) {
+
+            return User::latest()->paginate(10);
+        }
     }
 
     /**
@@ -55,7 +64,7 @@ class UserController extends Controller
     // !
     public function UpdateProfile(Request $request)
     {
-        $user =  auth('api')->user(); 
+        $user =  auth('api')->user();
 
         // ! Validation
         $this->validate($request, [
@@ -139,6 +148,9 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
+        $this->authorize('isAdmin');
+
+
         $user = User::findOrFail($id);
 
         $user->delete();
