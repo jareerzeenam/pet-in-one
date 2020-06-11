@@ -1,15 +1,13 @@
-@extends('layouts.ui-master')
-
-@section('content')
-<div
+<template>
+    <div>
+        <div
             class="main-banner"
             style="background-image: url('/images/main-bg.jpg')"
         >
             <div class="container">
                 <div class="main-heading">
                     <h1>
-                        Helping to Buy, Sell & Read about <br />
-                        your favourit Pet in Sri Lanka
+                        Contact Us
                     </h1>
                     <p>
                         Lorem ipsum dolor sit amet, consectetur adipisicing
@@ -20,4 +18,15 @@
                 </div>
             </div>
         </div>
-@endsection
+
+        <div></div>
+    </div>
+</template>
+
+<script>
+export default {
+    mounted() {
+        console.log("Component mounted.");
+    }
+};
+</script>

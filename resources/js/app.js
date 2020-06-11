@@ -71,6 +71,10 @@ let routes = [
         component: require("./components/Dashboard.vue").default
     },
     {
+        path: "/home",
+        component: require("./components/Home.vue").default
+    },
+    {
         path: "/developer",
         component: require("./components/Developer.vue").default
     },
@@ -81,6 +85,20 @@ let routes = [
     {
         path: "/users",
         component: require("./components/Users.vue").default
+    },
+    {
+        path: "/mystore",
+        component: require("./components/MyStore.vue").default
+    },
+    {
+        path: "/product",
+        component: require("./components/Product.vue").default
+    },
+
+    // !404
+    {
+        path: "*",
+        component: require("./components/NotFound.vue").default
     }
 ];
 

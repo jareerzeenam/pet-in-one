@@ -48,8 +48,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="home" class="brand-link">
-      <img src="images/logo.png" alt="Pet in One Logo" class="brand-image img-circle elevation-3"
+    <a href="/" class="brand-link">
+      <img src="{{ url('images/logo.png') }}" alt="Pet in One Logo" class="brand-image img-circle elevation-3"
            style="opacity: .8">
       <span class="brand-text font-weight-light">Pet In One</span>
     </a>
@@ -62,10 +62,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <img src="images/profile/{{ Auth::user()->photo }}" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">
+          <a href="profile" class="d-block">
                {{ Auth::user()->name }}
           </a>
-          <p class="text-white">{{ Auth::user()->type }}</p>
+          <p class="text-white" style="text-transform: capitalize;">{{ Auth::user()->type  }}</p>
         </div>
       </div>
 
@@ -102,9 +102,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </li>
               @endcan
                <li class="nav-item">
-                <router-link to="posts" class="nav-link ">
+                <router-link to="mystore" class="nav-link ">
                   <i class="fas fa-address-card nav-icon text-blue"></i>
-                  <p>Posts</p>
+                  <p>My Store</p>
+                </router-link>
+              </li>
+               <li class="nav-item">
+                <router-link to="store" class="nav-link ">
+                  <i class="fas fa-address-card nav-icon text-blue"></i>
+                  <p>Store</p>
                 </router-link>
               </li>
             </ul>

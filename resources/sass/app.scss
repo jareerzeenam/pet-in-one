@@ -1,5 +1,7 @@
 // Fonts
 @import url("https://fonts.googleapis.com/css?family=Nunito");
+@import url('https://fonts.googleapis.com/css2?family=Piedra&family=Piedra&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Oxygen:wght@300;400;700&display=swap');
 
 // Variables
 @import "variables";
@@ -13,8 +15,104 @@ $fa-font-path: "../webfonts";
 @import "~bootstrap/scss/bootstrap";
 @import "~admin-lte/dist/css/adminlte.css";
 
+$white:#fff;
+$black:#000000;
+$red:#ff0000;
+$gray:#f5f5f5;
+
+
+h1 h2 h3 h4 {
+    font-family: 'Piedra', cursive !important;
+}
+
+p span {
+    font-family: 'Oxygen',
+        sans-serif !important;
+}
+
+.main-nav {
+    nav ul li a {
+        font-family: 'Piedra',
+            cursive !important;
+        color: $white !important;
+        font-size: 20px;
+        transition: all 0.5s;
+
+        &:hover {
+            color: $red !important;
+        }
+    }
+
+    .router-link-exact-active {
+        background: none;
+        color: $red !important;
+    }
+}
+
+
 
 .router-link-exact-active {
     background: #0050c7;
-    color: #ffffff !important;
+    color: $white !important;
+}
+
+.footer {
+    position: absolute;
+    bottom: 0 !important;
+    width: 100%;
+    // height: 60px;
+    line-height: 60px;
+    padding: 0 20px;
+    background-color: $gray;
+}
+
+.navbar-brand {
+    font-family: 'Piedra',
+        cursive !important;
+    color: $white !important;
+    font-size: 24px;
+}
+
+
+.main-banner {
+
+    margin-top: -65px;
+    background-size: cover;
+    height: 500px;
+
+    .main-heading {
+        font-family: 'Piedra',
+            cursive !important;
+        padding: 150px 0px 0px 0px;
+        color: $white;
+        width: 500px;
+        font-size: 30px;
+
+        p {
+            font-family: 'Oxygen',
+                sans-serif !important;
+            font-size: 16px;
+        }
+    }
+}
+
+.btn-common {
+    text-decoration: none !important;
+    color: $white;
+    border: 2px solid $white;
+    border-radius: 15px;
+    font-family: 'Oxygen',
+        sans-serif !important;
+    font-size: 16px;
+    padding: 10px;
+    transition: all 0.5s;
+
+    &:hover {
+        color: $white !important;
+        background: $red;
+    }
+}
+
+.text-left {
+    float: left !important;
 }
