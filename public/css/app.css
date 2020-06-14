@@ -48311,3 +48311,7 @@ p.paragraph {
   font-family: "Oxygen", sans-serif !important;
 }
 
+.navbar-brand {
+  text-shadow: 2px 2px 2px #000000 !important;
+}
+

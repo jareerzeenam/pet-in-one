@@ -20,9 +20,7 @@ Route::get('/', function () {
 Route::resource('/store', 'PostController');
 
 
-Route::get('/blog', function () {
-    return view('ui.blog');
-});
+Route::resource('/blog', 'BlogController');
 
 // !
 

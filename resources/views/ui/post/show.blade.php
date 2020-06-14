@@ -19,10 +19,10 @@
                         <img class="d-block w-100" src="{{ url('images/post/') }}/{{ $post->photo }}" alt="First slide">
                         </div>
                         <div class="carousel-item">
-                        <img class="d-block w-100" src="{{ url('images/user-cover.png') }}" alt="Second slide">
+                        <img class="d-block w-100" src="{{ url('images/post/') }}/{{ $post->photo }}" alt="Second slide">
                         </div>
                         <div class="carousel-item">
-                        <img class="d-block w-100" src="{{ url('images/user-cover.png') }}" alt="Third slide">
+                        <img class="d-block w-100" src="{{ url('images/post/') }}/{{ $post->photo }}" alt="Third slide">
                         </div>
                     </div>
                     <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -61,12 +61,10 @@
               </div> --}}
 
               <div class="mt-4 product-share">
-                <a href=" tel:{{ $post->phone }}" class="text-gray">
+                {{-- <a href=" tel:{{ $post->phone }}" class="text-gray">
                   <i class="fas fa-phone"></i>
                   {{ $post->phone }}
-                </a>
-                <br>
-
+                </a> --}}
                 <br>
 
               </div>

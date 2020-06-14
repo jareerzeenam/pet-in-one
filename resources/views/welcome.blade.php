@@ -8,12 +8,10 @@
                 Helping to Buy, Sell & Read about <br />
                 your favourit Pet in Sri Lanka
             </h1>
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing
-                elit. Quidem, nisi consectetur distinctio nesciunt animi
-                qui tempore est voluptatibus quam impedit.
-            </p>
-            <a href="#" class="btn-common">Read More</a>
+            {{-- <p>
+                All About Pets.
+            </p> --}}
+            <a href="#about" class="btn-common">Read More</a>
         </div>
     </div>
 </div>
@@ -22,14 +20,13 @@
     <div class="row pt-5">
         <div class="col-sm-6">
             <div id="about">
-                <h1>About Us</h1>
+                <h1 id="about">About Us</h1>
                 <hr>
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Totam sed beatae,
-                    rerum itaque consequuntur vero fugit nobis ut tenetur debitis possimus quo,
-                    laboriosam quibusdam maiores, rem reprehenderit natus soluta sint. Excepturi
-                    veritatis modi adipisci? Aperiam, veritatis repudiandae odio maxime delectus
-                    fuga facere voluptas similique? Adipisci eligendi repudiandae voluptates, illo
-                    asperiores et, ipsum quos quasi aliquid deserunt maxime at debitis ex?</p>
+                <p>Welcome to <a href="/">Petinone</a>, your number one source for all Pet Products,
+                    Pet Food, Birds, Fish & pet Animals. We're dedicated to giving you the very best
+                    of Petinone, with a focus on three characteristics, ie: dependability,
+                    customer service and uniqueness.
+                    Founded in 2020 by Jareer Zeenam</p>
             </div>
         </div>
         <div class="col-sm-6">

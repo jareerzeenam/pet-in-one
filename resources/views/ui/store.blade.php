@@ -4,15 +4,14 @@
 <div class="main-banner" style="background-image: url('/images/main-bg.jpg')">
     <div class="container">
         <div class="main-heading">
+            <br>
             <h1>
                 Store
             </h1>
             <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing
-                elit. Quidem, nisi consectetur distinctio nesciunt animi
-                qui tempore est voluptatibus quam impedit.
+               Checkout our store to purchase your favourite Pet.
             </p>
-            <a href="#" class="btn-common">Read More</a>
+            <a href="#products" class="btn-common">Show Products</a>
         </div>
     </div>
 </div>
@@ -26,20 +25,24 @@
             </div>
 
             <div class="card-body pb-0">
-              <div class="row d-flex align-items-stretch">
+              <div id="products" class="row d-flex align-items-stretch">
                @foreach ($post as $posts)
                 <div class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch">
                   <div class="card bg-light">
                     <div class="card-header text-muted border-bottom-0">
-                      <h2 class="lead">{{ $posts->title }}</h2>
+                      <h2 class=""><b>{{ $posts->title }}</b></h2>
                       <h2 class="lead">Rs.{{ $posts->price }}</h2>
+
+
                       <p class="text-sm"></p>
                     </div>
                     <div class="card-body pt-0">
                       <div class="row">
                         <div class="col-7">
                           <p class="text-muted text-sm">
-                            <b>Description : {{ $posts->description }}</b>
+                            {{-- <b>Description : {{ $posts->description }}</b> --}}
+                            <b>Description :   {{ Illuminate\Support\Str::limit($posts->description, 25, $end='...') }}</b>
+
 
                           </p>
                           <ul class="ml-4 mb-0 fa-ul text-muted">

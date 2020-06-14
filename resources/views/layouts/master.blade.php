@@ -76,19 +76,19 @@ scratch. This page gets rid of all links and provides the needed markup only.
                with font-awesome or any other icon font library -->
 
         <li class="nav-item">
-            <router-link to="dashboard" class="nav-link">
+            {{-- <router-link to="dashboard" class="nav-link">
               <i class="nav-icon fas fa-tachometer-alt text-orange"></i>
               <p>
                 Dashboard
               </p>
-            </router-link>
+            </router-link> --}}
         </li>
 
           <li class="nav-item has-treeview ">
             <a href="#" class="nav-link ">
-              <i class="nav-icon fas fa-cog text-green"></i>
+              <i class="nav-icon fas fa-tachometer-alt text-orange"></i>
               <p>
-                Management
+                Dashboard
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>

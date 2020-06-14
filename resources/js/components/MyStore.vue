@@ -81,10 +81,8 @@
                           <i class="fas fa-user"></i>
                           View Post
                         </a>-->
-                        <router-link to="product" class="btn btn-sm btn-primary">
-                          <i class="fas fa-user"></i>
-                          View Post
-                        </router-link>
+
+                         <el-button type="text" @click="viewBlog(post)" class="button">View Post</el-button>
                       </div>
                     </div>
                   </div>
@@ -284,6 +282,50 @@
             </div>
           </div>
         </div>
+          <!-- SHOW MOEL -->
+        <div
+          class="modal fade"
+          id="addShow"
+          tabindex="-1"
+          role="dialog"
+          aria-labelledby="addNewLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="addNewLabel">Post</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+
+              <div class="modal-body">
+                  <div class="card ">
+                    <div class="card-header">
+                        <img :src="'/images/post/' + form.photo" class="image" />
+                    </div>
+                    <div class="card-body">
+                        <h5 class="">{{ form.title | upText}}</h5>
+                        <h5 class="text-muted">Rs.{{ form.price}}</h5>
+                        <p class="text-muted"> {{ form.category |upText }}</p>
+                        <p class="card-text paragraph">{{ form.description | upText}}</p>
+                    </div>
+                    <div class="card-footer text-muted">
+                        {{ form.created_at | myDate}}
+                    </div>
+                    </div>
+
+              </div>
+
+              <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Ok</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SHOW MOEL -->
       </div>
     </div>
   </div>
@@ -296,6 +338,7 @@ export default {
       editmode: false,
       // * Posts object
       posts: {},
+
 
       form: new Form({
         id: "",
@@ -316,6 +359,10 @@ export default {
   },
 
   methods: {
+          viewBlog(post) {
+      $("#addShow").modal("show");
+      this.form.fill(post);
+    },
           truncateText(text) {
       if (text.length > 15) {
         return `${text.substr(0, 15)}...`;
