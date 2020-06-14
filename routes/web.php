@@ -22,6 +22,8 @@ Route::resource('/store', 'PostController');
 
 Route::resource('/blog', 'BlogController');
 
+Route::post('contact', 'ContactFormController@store');
+
 // !
 
 // !

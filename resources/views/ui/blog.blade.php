@@ -1,7 +1,7 @@
 @extends('layouts.ui-master')
 
 @section('content')
-<div class="main-banner" style="background-image: url('/images/main-bg.jpg')">
+<div class="main-banner" style="background-image: url('/images/main-bg4.jpg')">
     <div class="container">
         <div class="main-heading">
             <h1>

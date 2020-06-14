@@ -308,6 +308,8 @@
                     <div class="card-body">
                         <h5 class="">{{ form.title | upText}}</h5>
                         <h5 class="text-muted">Rs.{{ form.price}}</h5>
+
+                        <p class="text-muted">   <a :href="'tel:'+form.phone"><i class="fas fa-lg fa-phone"></i> {{ form.phone}}</a></p>
                         <p class="text-muted"> {{ form.category |upText }}</p>
                         <p class="card-text paragraph">{{ form.description | upText}}</p>
                     </div>

@@ -18,7 +18,7 @@
                 <div class="row">
                     <div class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch" v-for="blog in blogs.data" :key="blog.id">
                        <div class="card"   style="width: 18rem;">
-                            <img :src="`images/blog/${blog.photo}`" class="img-circle img-fluid image" />
+                            <img :src="`images/blog/${blog.photo}`" class=" img-fluid image" />
                             <div class="card-body">
                                  <h5 class="card-title">{{ blog.title | upText}}</h5>
                                  <p class="card-text text-muted">{{ blog.category |upText }}</p>

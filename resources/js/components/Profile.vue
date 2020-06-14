@@ -14,7 +14,7 @@
           <!-- Add the bg color to the header using any of the bg-* classes -->
           <div
             class="widget-user-header text-white"
-            style="background: url('./images/user-cover.png') center center;"
+            style="background: url('./images/main-bg2.jpg') center center;"
           >
             <h3 class="widget-user-username text-right">{{form.name | upText}}</h3>
             <h5 class="widget-user-desc text-right">{{ form.type | upText }}</h5>
@@ -56,10 +56,7 @@
         <div class="card">
           <div class="card-header p-2">
             <ul class="nav nav-pills">
-              <li class="nav-item">
-                <a class="nav-link" href="#activity" data-toggle="tab">Activity</a>
-              </li>
-
+              
               <li class="nav-item">
                 <a class="nav-link active" href="#settings" data-toggle="tab">Settings</a>
               </li>
@@ -68,9 +65,7 @@
           <!-- /.card-header -->
           <div class="card-body">
             <div class="tab-content">
-              <div class="tab-pane" id="activity">
-                <h1>Display User Activity</h1>
-              </div>
+
               <!-- /.tab-pane -->
 
               <!-- /.tab-pane -->

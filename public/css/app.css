@@ -48315,3 +48315,7 @@ p.paragraph {
   text-shadow: 2px 2px 2px #000000 !important;
 }
 
+.image {
+  height: 300px !important;
+}
+
