@@ -17,6 +17,19 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::resource('/store', 'PostController');
+
+
+Route::get('/blog', function () {
+    return view('ui.blog');
+});
+
+// !
+
+// !
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('{path}', 'HomeController@index')->where('path', '([A-z]+)?');

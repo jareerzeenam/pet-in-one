@@ -10,12 +10,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
 
-  <title>AdminLTE 3 | Starter</title>
+  <title>Pet in one</title>
+   <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
 <link rel="stylesheet" href="/css/app.css">
 </head>
 <body class="hold-transition sidebar-mini">
-<div class="wrapper">
+<div class="wrapper" id="app">
 
   <!-- Navbar -->
   <nav class="main-header navbar navbar-expand navbar-white navbar-light">
@@ -33,6 +35,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <div class="input-group-append">
           <button class="btn btn-navbar" type="submit">
             <i class="fas fa-search"></i>
+
           </button>
         </div>
       </div>
@@ -45,8 +48,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="index3.html" class="brand-link">
-      <img src="images/logo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+    <a href="/" class="brand-link">
+      <img src="{{ url('images/logo.png') }}" alt="Pet in One Logo" class="brand-image img-circle elevation-3"
            style="opacity: .8">
       <span class="brand-text font-weight-light">Pet In One</span>
     </a>
@@ -55,11 +58,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <div class="sidebar">
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-        <div class="image">
-          <img src="images/profile.png" class="img-circle elevation-2" alt="User Image">
+        <div class="">
+          <img src="images/profile/{{ Auth::user()->photo }}" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">Jareer</a>
+          <a href="profile" class="d-block">
+               {{ Auth::user()->name }}
+          </a>
+          <p class="text-white" style="text-transform: capitalize;">{{ Auth::user()->type  }}</p>
         </div>
       </div>
 
@@ -68,37 +74,76 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-          <li class="nav-item has-treeview menu-open">
-            <a href="#" class="nav-link active">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
+
+        <li class="nav-item">
+            <router-link to="dashboard" class="nav-link">
+              <i class="nav-icon fas fa-tachometer-alt text-orange"></i>
               <p>
                 Dashboard
+              </p>
+            </router-link>
+        </li>
+
+          <li class="nav-item has-treeview ">
+            <a href="#" class="nav-link ">
+              <i class="nav-icon fas fa-cog text-green"></i>
+              <p>
+                Management
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="#" class="nav-link active">
-                  <i class="fas fa-feather-alt"></i>
-                  <p>Posts</p>
-                </a>
+              @can('isAdmin')
+                <li class="nav-item">
+                <router-link to="users" class="nav-link ">
+                  <i class="fas fa-users nav-icon text-blue"></i>
+                  <p>Users</p>
+                </router-link>
               </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="fas fa-circle nav-icon"></i>
-                  <p>Inactive Page</p>
-                </a>
+              @endcan
+               <li class="nav-item">
+                <router-link to="mystore" class="nav-link ">
+                  <i class="fas fa-address-card nav-icon text-blue"></i>
+                  <p>My Store</p>
+                </router-link>
+              </li>
+               <li class="nav-item">
+                <router-link to="myblog" class="nav-link ">
+                  <i class="fas fa-address-card nav-icon text-blue"></i>
+                  <p>My Blog</p>
+                </router-link>
               </li>
             </ul>
           </li>
+          @can('isAdmin')
+            <li class="nav-item">
+                <router-link to="developer" class="nav-link">
+                <i class="nav-icon fas fa-cogs"></i>
+                <p>
+                    Developer
+                </p>
+                </router-link>
+            </li>
+          @endcan
           <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
+            <router-link to="profile" class="nav-link">
+              <i class="nav-icon fas fa-user"></i>
               <p>
-                Simple Link
-                <span class="right badge badge-danger">New</span>
+                Profile
               </p>
+            </router-link>
+        </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ route('logout') }}"
+                onclick="event.preventDefault();
+                    document.getElementById('logout-form').submit();">
+                    <i class="nav-icon fas fa-power-off text-red"></i>
+                    <p>{{ __('Logout') }}</p>
             </a>
+
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                @csrf
+            </form>
           </li>
         </ul>
       </nav>
@@ -110,84 +155,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
-    <div class="content-header">
-      <div class="container-fluid">
-        <div class="row mb-2">
-          <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Starter Page</h1>
-          </div><!-- /.col -->
-          <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Starter Page</li>
-            </ol>
-          </div><!-- /.col -->
-        </div><!-- /.row -->
-      </div><!-- /.container-fluid -->
-    </div>
+
     <!-- /.content-header -->
 
     <!-- Main content -->
     <div class="content">
       <div class="container-fluid">
-        <div class="row">
-          <div class="col-lg-6">
-            <div class="card">
-              <div class="card-body">
-                <h5 class="card-title">Card title</h5>
+        <router-view></router-view>
 
-                <p class="card-text">
-                  Some quick example text to build on the card title and make up the bulk of the card's
-                  content.
-                </p>
-
-                <a href="#" class="card-link">Card link</a>
-                <a href="#" class="card-link">Another link</a>
-              </div>
-            </div>
-
-            <div class="card card-primary card-outline">
-              <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-
-                <p class="card-text">
-                  Some quick example text to build on the card title and make up the bulk of the card's
-                  content.
-                </p>
-                <a href="#" class="card-link">Card link</a>
-                <a href="#" class="card-link">Another link</a>
-              </div>
-            </div><!-- /.card -->
-          </div>
-          <!-- /.col-md-6 -->
-          <div class="col-lg-6">
-            <div class="card">
-              <div class="card-header">
-                <h5 class="m-0">Featured</h5>
-              </div>
-              <div class="card-body">
-                <h6 class="card-title">Special title treatment</h6>
-
-                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
-              </div>
-            </div>
-
-            <div class="card card-primary card-outline">
-              <div class="card-header">
-                <h5 class="m-0">Featured</h5>
-              </div>
-              <div class="card-body">
-                <h6 class="card-title">Special title treatment</h6>
-
-                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
-              </div>
-            </div>
-          </div>
-          <!-- /.col-md-6 -->
-        </div>
-        <!-- /.row -->
+        <vue-progress-bar></vue-progress-bar>
       </div><!-- /.container-fluid -->
     </div>
     <!-- /.content -->
@@ -200,12 +176,23 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <footer class="main-footer">
     <!-- To the right -->
     <div class="float-right d-none d-sm-inline">
-      Anything you want
+      Pet In One
     </div>
     <!-- Default to the left -->
-    <strong>Copyright &copy; 2014-2019 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
+    <strong>Copyright &copy; 2020 <a href="home">Petinone.com</a>.</strong> All rights reserved.
   </footer>
 </div>
+
+@auth
+   <script>
+        window.user = @json(auth()->user())
+   </script>
+@endauth
+
+
+
+
+
 <script src="/js/app.js"></script>
 </body>
 </html>
