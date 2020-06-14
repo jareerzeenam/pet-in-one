@@ -1,7 +1,9 @@
 /node_modules
 /public/hot
 /public/storage
+/public/images
 /storage/*.key
+storage/framework/cache/data
 /vendor
 .env
 .env.backup
@@ -10,3 +12,4 @@ Homestead.json
 Homestead.yaml
 npm-debug.log
 yarn-error.log
+*.zip
