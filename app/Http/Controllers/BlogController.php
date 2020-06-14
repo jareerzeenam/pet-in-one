@@ -27,7 +27,7 @@ class BlogController extends Controller
      */
     public function create()
     {
-        //
+
     }
 
     /**
@@ -49,7 +49,8 @@ class BlogController extends Controller
      */
     public function show($id)
     {
-        //
+        $blog =  Blog::find($id);
+        return view('ui.post.blog')->with('blog', $blog);
     }
 
     /**

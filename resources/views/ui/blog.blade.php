@@ -40,9 +40,7 @@
                         <div class="col-7">
                           <p class="text-muted text-sm pt-4">
                             {{-- <b>Description : {{ $blogs->description }}</b> --}}
-                            <b>Description :   {{ Illuminate\Support\Str::limit($blogs->description, 25, $end='...') }}</b>
-
-
+                            <b>Description :   {{ Illuminate\Support\Str::limit($blogs->description, 45, $end='...') }}</b>
                           </p>
                           <ul class="ml-4 mb-0 fa-ul text-muted">
                             {{-- <li class="small">
@@ -76,7 +74,7 @@
                                 {{ $blogs->created_at }}
                       </div>
                       <div class="text-right">
-                        <a href="store/{{ $blogs->id }}" class="btn btn-sm btn-primary">
+                        <a href="blog/{{ $blogs->id }}" class="btn btn-sm btn-primary">
                           <i class="fas fa-user"></i>
                           View Article
                         </a>
