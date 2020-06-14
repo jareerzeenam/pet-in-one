@@ -48319,3 +48319,7 @@ p.paragraph {
   height: 300px !important;
 }
 
+.close {
+  color: red !important;
+}
+

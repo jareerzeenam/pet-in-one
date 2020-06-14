@@ -62,7 +62,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <img src="images/profile/{{ Auth::user()->photo }}" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="profile" class="d-block">
+          <a href="profile" class="d-block" style="text-transform: capitalize;">
                {{ Auth::user()->name }}
           </a>
           <p class="text-white" style="text-transform: capitalize;">{{ Auth::user()->type  }}</p>

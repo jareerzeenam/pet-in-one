@@ -121,14 +121,18 @@ p.paragraph {
     text-align: justify;
     font-size: 14px;
     font-family: 'Oxygen',
-    sans-serif !important;
+        sans-serif !important;
 }
 
-.navbar-brand{
+.navbar-brand {
     text-shadow: 2px 2px 2px #000000 !important;
 }
 
 
-.image{
+.image {
     height: 300px !important;
+}
+
+.close {
+    color: red !important;
 }

@@ -5,7 +5,7 @@
         <div class>
           <div class="card card-solid">
             <div class="card-header">
-              <h3 class="card-title">Products</h3>
+              <h3 class="card-title">My Stores</h3>
 
               <div class="card-tools">
                 <button class="btn btn-success" @click="newModal">

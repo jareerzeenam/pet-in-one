@@ -97,7 +97,7 @@
                       </tr>
                       <tr>
                         <th>Meetable Date | Time</th>
-                        <td>{{ $post->meeting_date_start }}  {{ $post->meeting_time }}</td>
+                        <td>{{ $post->meeting_date_start }} <b class=" text-danger">|</b> {{ $post->meeting_time }}</td>
                       </tr>
                     </tbody></table>
                   </div>

@@ -5,7 +5,7 @@
         <div class>
           <div class="card card-solid">
             <div class="card-header">
-              <h3 class="card-title">Blogs</h3>
+              <h3 class="card-title"> My Blogs</h3>
               <div class="card-tools">
                 <button class="btn btn-success" @click="newModal">
                   Write An Article
@@ -88,7 +88,7 @@
                     <textarea
                       v-model="form.description"
                       name="description"
-                      placeholder="Tell somethin about your product"
+                      placeholder="Tell Somethin"
                       class="form-control"
                       :class="{
                             'is-invalid': form.errors.has(
